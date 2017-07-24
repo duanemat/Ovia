@@ -11,6 +11,10 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
+// Rooms Controller
+$app->get('/availability', 'RoomController@getAvailability');
+$app->post('/rooms', 'RoomController@bookRoom');
+
+// Cleaning Schedule
+$app->get('/maintenance', 'MaintenanceController@getMaintenanceSchedule');
+
