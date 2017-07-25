@@ -13,6 +13,8 @@
 
 // Rooms Controller
 $app->get('/availability', 'RoomController@getAvailability');
+$app->get('/availability/{room_id}', 'RoomController@getAvailability');
+
 $app->post('/rooms', 'RoomController@bookRoom');
 
 // Cleaning Schedule
