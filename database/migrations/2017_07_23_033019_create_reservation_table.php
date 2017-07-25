@@ -19,6 +19,7 @@ class CreateReservationTable extends Migration
             $table->foreign('room_id')->references('id')->on('Room');
             $table->date('stay_date_start');
             $table->date('stay_date_end');
+            $table->float('check_in_time', 4, 2);
             $table->integer('guest_id')->unsigned();
             $table->timestamps();
         });

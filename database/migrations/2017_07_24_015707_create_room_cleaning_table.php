@@ -20,7 +20,8 @@ class CreateRoomCleaningTable extends Migration
             $table->integer('maintenance_team_id');
             $table->foreign('maintenance_team_id')->references('id')->on('Maintenance');
             $table->date('date_cleaned');
-            $table->integer('length_of_cleaning');
+            $table->float('start_time', 4, 2);
+            $table->float('length_of_cleaning');
             $table->timestamps();
         });
     }
