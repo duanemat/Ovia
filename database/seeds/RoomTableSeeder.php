@@ -30,7 +30,7 @@ class RoomTableSeeder extends Seeder
             [
                 "name"=>"Room 3",
                 "guests"=>1,
-                "storage"=>3,
+                "storage"=>2,
                 "created_at"=>time(),
                 "updated_at"=>time()
             ],
