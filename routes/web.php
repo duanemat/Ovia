@@ -11,15 +11,17 @@
 |
 */
 
+$app->group(['prefix'=>'v1/', 'middleware'=>'WrapperMiddleware'], function () use ($app) {
 // Rooms Controller
 // Availability
-$app->get('availability', 'RoomController@getAvailability');
-$app->get('availability/{room_id}', 'RoomController@getAvailability');
+    $app->get('availability', 'RoomController@getAvailability');
+    $app->get('availability/{room_id}', 'RoomController@getAvailability');
 
 // Booking room
-$app->post('rooms', 'RoomController@bookRoom');
-$app->post('rooms/{room_id}', 'RoomController@bookRoom');
+    $app->post('rooms', 'RoomController@bookRoom');
+    $app->post('rooms/{room_id}', 'RoomController@bookRoom');
 
 // Cleaning Schedule
-$app->get('maintenance', 'ManagementController@getMaintenanceSchedule');
-$app->get('maintenance/{maintenance_team_id}', 'ManagementController@getMaintenanceSchedule');
+    $app->get('maintenance', 'ManagementController@getMaintenanceSchedule');
+    $app->get('maintenance/{maintenance_team_id}', 'ManagementController@getMaintenanceSchedule');
+});

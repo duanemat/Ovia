@@ -156,7 +156,7 @@ class RoomController extends Controller
 
         $available_rooms = $this->retrieveAvailabilityWithConditions($room_id, $start_date->format($date_format), $end_date->format($date_format), $num_guests, $num_luggage, $check_in);
 
-        return $available_rooms;
+        return [$available_rooms, null];
     }
 
 
@@ -164,7 +164,7 @@ class RoomController extends Controller
 
         $date_format = "Y-m-d";
         list($start_date, $end_date, $los, $num_guests, $num_luggage, $check_in, $guest_id) = $this->parseRequest($request);
-        $available_rooms = $this->getAvailability($request, $room_id);
+        list($available_rooms, $error) = $this->getAvailability($request, $room_id);
 
 
         /* Cycle through the available rooms and then try to find the most "efficient" booking.
@@ -220,7 +220,7 @@ class RoomController extends Controller
 
         // If booked_room is not null, save to database and return the ID
         if ($booked_room == null){
-            return ["result"=>null, "error"=>"No rooms available for ".$start_date->format($date_format)];
+            return [null, "No rooms available for ".$start_date->format($date_format)];
         }else{
             try {
                 $parameters = [
@@ -241,9 +241,9 @@ class RoomController extends Controller
                 $row_id = null;
             }
             if ($row_id == null){
-                return ["result"=>null, "error"=>"Error recording this booking."];
+                return [null, "Error recording this booking."];
             }else{
-                return ["result"=>$booked_room['room_id'], "error"=>null];
+                return [$booked_room['room_id'], null];
             }
         }
     }

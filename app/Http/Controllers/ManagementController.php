@@ -68,6 +68,6 @@ class ManagementController extends Controller
                 $total_cleaning_time += $rooms_needing_a_clean[$room];
             }
         }
-        return ["results"=>$cleaning_crew_schedule, "error"=>null];
+        return [$cleaning_crew_schedule, null];
     }
 }
