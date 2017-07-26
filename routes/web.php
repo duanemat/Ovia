@@ -12,11 +12,14 @@
 */
 
 // Rooms Controller
-$app->get('/availability', 'RoomController@getAvailability');
-$app->get('/availability/{room_id}', 'RoomController@getAvailability');
+// Availability
+$app->get('availability', 'RoomController@getAvailability');
+$app->get('availability/{room_id}', 'RoomController@getAvailability');
 
-$app->post('/rooms', 'RoomController@bookRoom');
+// Booking room
+$app->post('rooms', 'RoomController@bookRoom');
+$app->post('rooms/{room_id}', 'RoomController@bookRoom');
 
 // Cleaning Schedule
-$app->get('/maintenance', 'MaintenanceController@getMaintenanceSchedule');
+$app->get('maintenance', 'MaintenanceController@getMaintenanceSchedule');
 
