@@ -222,23 +222,26 @@ class RoomController extends Controller
         if ($booked_room == null){
             return [null, "No rooms available for ".$start_date->format($date_format)];
         }else{
-            try {
-                $parameters = [
-                    'room_id' => $booked_room['room_id'],
-                    'stay_date_start' => $start_date->format($date_format),
-                    'stay_date_end' => $end_date->format($date_format),
-                    'guests_count' => $num_guests,
-                    'storage_count' => $num_luggage,
-                    'check_in_time' => $check_in,
-                    'guest_id' => $guest_id,
-                    'created_at' => time(),
-                    'updated_at' => time()
-                ];
-                $row_id = $this->insertBooking($parameters);
+            for($i=0; $i<$los; $i++) {
+                try {
+                    $booking_date = $start_date;
+                    $parameters = [
+                        'room_id' => $booked_room['room_id'],
+                        'stay_date_start' => $booking_date->format($date_format),
+                        'stay_date_end' => $booking_date->modify('+1 day')->format($date_format),
+                        'guests_count' => $num_guests,
+                        'storage_count' => $num_luggage,
+                        'check_in_time' => $check_in,
+                        'guest_id' => $guest_id,
+                        'created_at' => time(),
+                        'updated_at' => time()
+                    ];
+                    $row_id = $this->insertBooking($parameters);
 
-            }catch (\Exception $e){
-                Log::error($e->getMessage());
-                $row_id = null;
+                } catch (\Exception $e) {
+                    Log::error($e->getMessage());
+                    $row_id = null;
+                }
             }
             if ($row_id == null){
                 return [null, "Error recording this booking."];
