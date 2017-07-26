@@ -21,5 +21,5 @@ $app->post('rooms', 'RoomController@bookRoom');
 $app->post('rooms/{room_id}', 'RoomController@bookRoom');
 
 // Cleaning Schedule
-$app->get('maintenance', 'MaintenanceController@getMaintenanceSchedule');
-
+$app->get('maintenance', 'ManagementController@getMaintenanceSchedule');
+$app->get('maintenance/{maintenance_team_id}', 'ManagementController@getMaintenanceSchedule');

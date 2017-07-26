@@ -13,8 +13,8 @@ class MaintenanceTableSeeder extends Seeder
     {
         DB::table("Maintenance")->insert([
            'name'=>"Cleaning Team 1",
-           'time_clean_per_guest'=>60,
-            'time_clean_per_room'=>30,
+           'time_clean_per_guest'=>30,
+            'time_clean_per_room'=>60,
             'max_hours_day'=>8,
             'created_at'=>time(),
             'updated_at'=>time()

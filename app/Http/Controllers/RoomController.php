@@ -6,7 +6,6 @@ use App\Utilities\Utilities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Mockery\Exception;
 
 class RoomController extends Controller
 {
@@ -237,7 +236,7 @@ class RoomController extends Controller
                 ];
                 $row_id = $this->insertBooking($parameters);
 
-            }catch (Exception $e){
+            }catch (\Exception $e){
                 Log::error($e->getMessage());
                 $row_id = null;
             }
